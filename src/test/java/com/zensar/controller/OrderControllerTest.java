@@ -29,32 +29,20 @@ import ch.qos.logback.core.status.Status;
 @AutoConfigureMockMvc
 public class OrderControllerTest {
 
-//	@InjectMocks
-//	OrderController orderController;
-//
-//	@Mock
-//	OrderService orderService;
-//
-//	OrderMessageRequest ordReq;
-//
-//	@BeforeEach
-//	void setup() throws Exception {
-//		MockitoAnnotations.openMocks(this);
-//
-//		ordReq = new OrderMessageRequest();
-//		ordReq.setOrderStatus("open");
-//
-//	}
-
 	@Autowired
 	MockMvc mockMvc;
 
 	@Test
 	final void testUpdateOrder() throws Exception {
-//		when(orderService.updateOderStatus(0, ordReq)).thenReturn(true);
 		String updateStatus = "{\"orderStatus\":\"open\"}";
-		assertEquals(true, true);
 		mockMvc.perform(MockMvcRequestBuilders.put("/7").contentType(MediaType.APPLICATION_JSON)
 				.content(updateStatus).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+	}
+	
+	@Test
+	final void testUpdateOrder_2() throws Exception {
+		String updateStatus = "{\"orderStatus\":\"open\"}";
+		mockMvc.perform(MockMvcRequestBuilders.put("/0").contentType(MediaType.APPLICATION_JSON)
+				.content(updateStatus).accept(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest()).andReturn();
 	}
 }
